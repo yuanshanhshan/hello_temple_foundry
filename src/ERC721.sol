@@ -3,7 +3,7 @@ pragma solidity ^0.8.14;
 
 import "@openzeppelin/contracts/token/common/ERC2981.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/utils/math/Math.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
@@ -12,7 +12,7 @@ import "erc721a/ERC721A.sol";
 contract AINft is Ownable, ERC2981, ERC721A, ReentrancyGuard {
     //using
     using Address for address;
-    using SafeMath for uint256;
+    using Math for uint256;
 
     //variables
     string public _baseTokenURI;
@@ -26,7 +26,7 @@ contract AINft is Ownable, ERC2981, ERC721A, ReentrancyGuard {
         string memory symbol,
         address _royaltyReceiveAddress,
         uint96 _feeNumerator
-    )ERC721A(name, symbol){
+    )ERC721A(name, symbol) Ownable(msg.sender){
         _setDefaultRoyalty(_royaltyReceiveAddress, _feeNumerator);
     }
 
